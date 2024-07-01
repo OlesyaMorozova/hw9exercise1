@@ -1,17 +1,34 @@
 package ru.netology.hw9exercise1.hw9exercise1.services;
 
 public class Radio {
+    public int radioStationMin = 0;
+    public int radioStationMax = 9;
     public int currentRadioStation;
+
+    public Radio() {
+    }
+
+    public Radio (int size) {
+        radioStationMax = radioStationMin + size-1;
+    }
+
+    public int getRadioStationMin() {
+        return radioStationMin;
+    }
+
+    public int getRadioStationMax() {
+        return radioStationMax;
+    }
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
     public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 0) {
+        if (newCurrentRadioStation < radioStationMin) {
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (newCurrentRadioStation > radioStationMax) {
             return;
         }
         currentRadioStation = newCurrentRadioStation;
@@ -19,57 +36,61 @@ public class Radio {
 
     public void next() {
         int result = currentRadioStation + 1;
-        if (getCurrentRadioStation() < 9) {
+        if (getCurrentRadioStation() < radioStationMax) {
             setCurrentRadioStation(result);
         }
-        if (getCurrentRadioStation() == 9) {
-            setCurrentRadioStation(0);
+        if (getCurrentRadioStation() == radioStationMax) {
+            setCurrentRadioStation(radioStationMin);
         }
     }
 
     public void prev() {
         int result = currentRadioStation - 1;
-        if (getCurrentRadioStation() > 0) {
+        if (getCurrentRadioStation() > radioStationMin) {
             setCurrentRadioStation(result);
         }
-        if (getCurrentRadioStation() == 0) {
-            setCurrentRadioStation(9);
+        if (getCurrentRadioStation() == radioStationMin) {
+            setCurrentRadioStation(radioStationMax);
         }
     }
 
     public int soundVolume;
+    public int volumeMax = 100;
+    public int volumeMin = 0;
 
     public int getSoundVolume() {
         return soundVolume;
     }
 
-    public void setSoundVolume(int newSoundVolume) {
-//        if (newSoundVolume < 0) {
-//            return;
-//        }
-//        if (newSoundVolume > 100) {
-//            return;
-//        }
-        soundVolume = newSoundVolume;
+    public int getVolumeMax() {
+        return volumeMax;
+    }
+
+    public int getVolumeMin() {
+        return volumeMin;
+    }
+
+    public void setSoundVolume(int soundVolume) {
+        this.soundVolume = soundVolume;
     }
 
     public void increase() {
         int result = soundVolume + 1;
-        if (getSoundVolume() < 100) {
+        if (getSoundVolume() < volumeMax) {
             setSoundVolume(result);
         }
-        if (getSoundVolume() == 100) {
-            setSoundVolume(100);
+        if (getSoundVolume() == volumeMax) {
+            setSoundVolume(volumeMax);
         }
     }
 
     public void decrease() {
         int result = soundVolume - 1;
-        if (getSoundVolume() > 0) {
+        if (getSoundVolume() > volumeMin) {
             setSoundVolume(result);
         }
-        if (getSoundVolume() == 0) {
-            setSoundVolume(0);
+        if (getSoundVolume() == volumeMin) {
+            setSoundVolume(volumeMin);
         }
     }
 }

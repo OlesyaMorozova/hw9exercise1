@@ -143,4 +143,12 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void setTheNumberOfRadioStation() {
+        Radio service = new Radio(50);
+
+        Assertions.assertEquals(0, service.getRadioStationMin());
+        Assertions.assertEquals(49, service.getRadioStationMax());
+    }
 }
