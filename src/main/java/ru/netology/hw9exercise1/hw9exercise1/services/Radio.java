@@ -1,15 +1,18 @@
 package ru.netology.hw9exercise1.hw9exercise1.services;
 
 public class Radio {
-    public int radioStationMin = 0;
-    public int radioStationMax = 9;
-    public int currentRadioStation;
+    private int radioStationMin = 0;
+    private int radioStationMax = 9;
+    private int currentRadioStation;
+    private int soundVolume;
+    private int volumeMax = 100;
+    private int volumeMin = 0;
 
     public Radio() {
     }
 
-    public Radio (int size) {
-        radioStationMax = radioStationMin + size-1;
+    public Radio(int size) {
+        radioStationMax = radioStationMin + size - 1;
     }
 
     public int getRadioStationMin() {
@@ -24,40 +27,6 @@ public class Radio {
         return currentRadioStation;
     }
 
-    public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < radioStationMin) {
-            return;
-        }
-        if (newCurrentRadioStation > radioStationMax) {
-            return;
-        }
-        currentRadioStation = newCurrentRadioStation;
-    }
-
-    public void next() {
-        int result = currentRadioStation + 1;
-        if (getCurrentRadioStation() < radioStationMax) {
-            setCurrentRadioStation(result);
-        }
-        if (getCurrentRadioStation() == radioStationMax) {
-            setCurrentRadioStation(radioStationMin);
-        }
-    }
-
-    public void prev() {
-        int result = currentRadioStation - 1;
-        if (getCurrentRadioStation() > radioStationMin) {
-            setCurrentRadioStation(result);
-        }
-        if (getCurrentRadioStation() == radioStationMin) {
-            setCurrentRadioStation(radioStationMax);
-        }
-    }
-
-    public int soundVolume;
-    public int volumeMax = 100;
-    public int volumeMin = 0;
-
     public int getSoundVolume() {
         return soundVolume;
     }
@@ -70,27 +39,49 @@ public class Radio {
         return volumeMin;
     }
 
+    public void setCurrentRadioStation(int newCurrentRadioStation) {
+        if (newCurrentRadioStation < radioStationMin) {
+            return;
+        }
+        if (newCurrentRadioStation > radioStationMax) {
+            return;
+        }
+        currentRadioStation = newCurrentRadioStation;
+    }
+
     public void setSoundVolume(int soundVolume) {
         this.soundVolume = soundVolume;
     }
 
-    public void increase() {
-        int result = soundVolume + 1;
-        if (getSoundVolume() < volumeMax) {
-            setSoundVolume(result);
+    public void next() {
+        if (getCurrentRadioStation() == radioStationMax) {
+            setCurrentRadioStation(radioStationMin);
+        } else {
+            setCurrentRadioStation(currentRadioStation + 1);
         }
+    }
+
+    public void prev() {
+        if (getCurrentRadioStation() == radioStationMin) {
+            setCurrentRadioStation(radioStationMax);
+        } else {
+            setCurrentRadioStation(currentRadioStation - 1);
+        }
+    }
+
+    public void increase() {
         if (getSoundVolume() == volumeMax) {
             setSoundVolume(volumeMax);
+        } else {
+            setSoundVolume(soundVolume + 1);
         }
     }
 
     public void decrease() {
-        int result = soundVolume - 1;
-        if (getSoundVolume() > volumeMin) {
-            setSoundVolume(result);
-        }
         if (getSoundVolume() == volumeMin) {
             setSoundVolume(volumeMin);
+        } else {
+            setSoundVolume(soundVolume - 1);
         }
     }
 }
