@@ -44,10 +44,10 @@ public class RadioTest {
     public void getTheNextRadioStation() {
         Radio service = new Radio();
 
-        service.setCurrentRadioStation(7);
+        service.setCurrentRadioStation(8);
         service.next();
 
-        int expected = 8;
+        int expected = 9;
         int actual = service.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
@@ -70,10 +70,10 @@ public class RadioTest {
     public void getThePrevRadioStation() {
         Radio service = new Radio();
 
-        service.setCurrentRadioStation(4);
+        service.setCurrentRadioStation(1);
         service.prev();
 
-        int expected = 3;
+        int expected = 0;
         int actual = service.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
@@ -96,10 +96,10 @@ public class RadioTest {
     public void increaseVolumeByOne() {
         Radio service = new Radio();
 
-        service.setSoundVolume(50);
+        service.setSoundVolume(99);
         service.increase();
 
-        int expected = 51;
+        int expected = 100;
         int actual = service.getSoundVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -122,10 +122,10 @@ public class RadioTest {
     public void decreaseVolumeByOne() {
         Radio service = new Radio();
 
-        service.setSoundVolume(15);
+        service.setSoundVolume(1);
         service.decrease();
 
-        int expected = 14;
+        int expected = 0;
         int actual = service.getSoundVolume();
 
         Assertions.assertEquals(expected, actual);
